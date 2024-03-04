@@ -107,16 +107,19 @@
             "Docker",
             "SQL (PostgreSQL, MySQL)",
             "NoSQL (MongoDB)",
+            "Git",
             "Github Workflow",
-            "AWS SAM template"
+            "AWS SAM",
+            "HTML / CSS"
           )
         ),
           subSection(
           title: "Intresting",
           content: list(
             "Microservices",
-            "Clean architecture",
-            "Stable Diffusion",
+            "Software Architecture",
+            "OOP",
+            "Stable diffusion",
             "LLM",
             "Langchain"
           )
