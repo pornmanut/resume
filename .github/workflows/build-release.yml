@@ -1,4 +1,4 @@
-name: Build Release
+name: Build Resume and Release
 
 on:
   workflow_dispatch:
