@@ -2,7 +2,7 @@ name: Build Resume and Release
 
 on:
   workflow_dispatch:
-    
+
 jobs:
   build_release:
     permissions:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: PDF
-          path: *.pdf
+          path: resume.pdf
 
       - name: Get current date
         id: date
@@ -35,4 +35,4 @@ jobs:
         if: github.ref_type == 'tag'
         with:
           name: "${{ github.ref_name }} — ${{ env.DATE }}"
-          files: 'resume.typ'
+          files: resume.pdf
