@@ -24,7 +24,7 @@ jobs:
 
       - name: Set file name
         id: filename
-        run: echo "FILENAME=${FIRST_NAME}_${SUR_NAME}_resume.pdf" >> $GITHUB_ENV
+        run: echo "FILENAME=${FIRST_NAME}_${SUR_NAME}_Resume.pdf" >> $GITHUB_ENV
         env:
           FIRST_NAME: ${{ vars.FIRST_NAME }}
           SUR_NAME: ${{ vars.SUR_NAME }}
