@@ -1,3 +1,3 @@
 # Resume
 
-This repository contains a resume built with Typeset.
+This repository contains a resume built with Typst
