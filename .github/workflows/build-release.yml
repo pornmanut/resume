@@ -24,7 +24,7 @@ jobs:
 
       - name: Set file name
         id: filename
-        run: echo "name=filename::${{ env.FIRST_NAME }}_${{ env.SUR_NAME }}_resume.pdf" >> $GITHUB_ENV
+        run: echo "name=${{ env.FIRST_NAME }}_${{ env.SUR_NAME }}_resume.pdf" >> $GITHUB_ENV
 
       - name: Rename PDF file
         run: mv resume.pdf ${{ env.filename }}
