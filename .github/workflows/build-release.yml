@@ -24,16 +24,16 @@ jobs:
 
       - name: Set file name
         id: filename
-        run: echo "::set-output name=filename::${{ env.FIRST_NAME }}_${{ env.SUR_NAME }}_resume.pdf"
+        run: echo "name=filename::${{ env.FIRST_NAME }}_${{ env.SUR_NAME }}_resume.pdf" >> $GITHUB_ENV
 
       - name: Rename PDF file
-        run: mv resume.pdf ${{ steps.filename.outputs.filename }}
+        run: mv resume.pdf ${{ env.filename }}
 
       - name: Upload PDF file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PDFs
-          path: ${{ steps.filename.outputs.filename }}
+          path: ${{ env.filename }}
 
       - name: Get current date
         id: date
@@ -44,4 +44,4 @@ jobs:
         if: github.ref_type == 'tag'
         with:
           name: "${{ github.ref_name }} — ${{ env.DATE }}"
-          files: ${{ steps.filename.outputs.filename }}
+          files: ${{ env.filename }}
