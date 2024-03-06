@@ -1,13 +1,9 @@
 name: Build Resume and Release
 
 on:
-  workflow_dispatch:
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - ".github/**"
-  #     - "**.typ"
+  push:
+    branches:
+      - main
 
 jobs:
   build_release:
