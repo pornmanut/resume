@@ -1,3 +1,6 @@
+// This file uses a template from the typst-mixed-resume project.
+// Credit: https://github.com/titaneric/typst-mixed-resume
+
 #let contact(text: "", link: none, type: "") = {
   (text: text, link: link, type: type)
 }
