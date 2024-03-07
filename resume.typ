@@ -80,7 +80,7 @@
       title: "Education",
       content: (
         subSection(
-          title: "B.S. Computer Engineering",
+          title: "B.Eng. Computer Engineering",
           titleEnd: "Kasetsart University",
           subTitle: "Jun 2016 - May 2020",
           subTitleEnd: "Bangkok, Thailand",
