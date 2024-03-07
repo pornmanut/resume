@@ -42,7 +42,7 @@
   main: (
     section(
         content: (
-          "As a Software Engineer with over two years of experience, I have been directly involved in developing internal software to enhance quality and streamline the development process for internal users. I have experience in agile process, leading planing ceremony, develop and design microservices application. I have a interest in software architecture, ETL processes, and developing applications with LLM."
+          "As a Software Engineer with over two years of experience, I have been directly involved in developing internal software to enhance quality and streamline the development process for internal users. I have experience in agile process, leading planning ceremony, developing and designing microservices applications. I have interests in software architecture, ETL processes, and developing applications with LLM."
         )
     ),
     section(
@@ -55,10 +55,10 @@
           subTitleEnd: "Bangkok, Thailand",
           content: list(
             [Design and develop an application that aggregates data from various social media platforms, performs data processing and analysis, and integrates with Looker Studio for data visualization.],
-            [Develop an outsource managment system platform, allowing the research team to assign outsoruce to each task, outsource will labeling messages with configurable labels.],
-            [Develop an etl application that routine calculates well-known research metrics for the research team.],
-            [Design and develop internal micoservice bot that sync data with condition from data warehouse to application.],
-            [Refactor and develop a new iteration of the web application that visualizes data from various social media platforms based on input keywords. support both internal and external users, providing a visualization interface and an API.],
+            [Develop an contractor managment system platform, allowing the research team to assign contractor to each task, contractor will labeling messages with configurable labels.],
+            [Develop an ETL application that routinely calculates well-known research metrics for the research team.],
+            [Design and develop internal micoservice bot that conditionally synchronize data from data warehouse to application.],
+            [Refactor and develop a new iteration of the web application that visualizes data from various social media platforms based on input keywords. Support both internal and external users, providing a visualization interface and an API.],
             [Design, develop and maintain internal tools to assist the research team.],
             [Collaborate with other teams to develop a boilerplate template in Golang.]
           ),
@@ -108,13 +108,13 @@
             "SQL (PostgreSQL, MySQL)",
             "NoSQL (MongoDB)",
             "Git",
-            "Github Actions",
+            "GitHub Actions",
             "AWS SAM",
             "HTML / CSS"
           )
         ),
           subSection(
-          title: "Intresting",
+          title: "Interests",
           content: list(
             "Microservices",
             "Software Architecture",
@@ -127,7 +127,7 @@
         subSection(
           title: "Language",
           content: list(
-            "Thaialnd (Native)",
+            "Thai (Native)",
             "English (Intermediate)",
           )
         ),
