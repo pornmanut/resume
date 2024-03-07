@@ -108,7 +108,7 @@
             "SQL (PostgreSQL, MySQL)",
             "NoSQL (MongoDB)",
             "Git",
-            "Github Workflow",
+            "Github Actions",
             "AWS SAM",
             "HTML / CSS"
           )
