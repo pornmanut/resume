@@ -69,21 +69,33 @@
           subTitle: "Sep 2021 - May 2022",
           subTitleEnd: "Phetchabun, Thailand",
           content: list(
-            [Design and develop a order-book feature for the 'ELECTRONIC SARABUN' website. This feature enables users to distribute order-book shares among departments within the organization. The feature supports creation, updating, deletion, and viewing based on user roles.],
+            [Design and develop a order-book feature for the 'ELECTRONIC SARABUN' website. This feature enables users to distribute order-book shares among departments within the organization. The feature],
             [Design and develop a single page application for verifying the authenticity of lottery resellers using their personal identification.],
             [Design and develop a new Phetchabun goverment website.],
           ),
         ),
       ),
     ),
+  ),
+  bottom: (
     section(
-      title: "Education",
+      title: "Personal Project",
       content: (
         subSection(
-          title: "B.Eng. Computer Engineering",
-          titleEnd: "Kasetsart University",
-          subTitle: "Jun 2016 - May 2020",
-          subTitleEnd: "Bangkok, Thailand",
+          title: "Task Manager Spring",
+          titleEnd: "github.com/pornmanut/task-manager-spring",
+          link: "https://github.com//pornmanut/task-manager-spring",
+          content: list(
+            [Task management website for tracking to-do list tasks. The application was built using Java, Spring Boot, and React. It was deployed on AWS using AWS Serverless Application Model (SAM), with Java Spring Boot running on AWS Lambda and React hosted on S3 via CloudFront. DynamoDB as the database. CI/CD were implemented using GitHub Actions.],
+          ),
+        ),
+        subSection(
+          title: "Resume Generator",
+          titleEnd: "github.com/pornmanut/resume",
+          link: "https://github.com//pornmanut/resume",
+          content: list(
+            [Developed a resume generator using the Typst language, with automated build and release processes implemented through GitHub Actions..],
+          ),
         ),
       ),
     ),
@@ -98,6 +110,7 @@
             "Python",
             "Golang",
             "Typescript",
+            "Java"
           ).join(" • "),
         ),
           subSection(
@@ -110,7 +123,9 @@
             "Git",
             "GitHub Actions",
             "AWS SAM",
-            "HTML / CSS"
+            "HTML / CSS",
+            "React",
+            "Spring Boot",
           )
         ),
           subSection(
@@ -118,10 +133,8 @@
           content: list(
             "Microservices",
             "Software Architecture",
-            "OOP",
             "Stable diffusion",
             "LLM",
-            "Langchain"
           )
         ),
         subSection(
@@ -131,7 +144,20 @@
             "English (Intermediate)",
           )
         ),
+        
       ),
+
+    ),
+    section(
+        title: "Education",
+        content: (
+          subSection(
+            title: "B.Eng. Computer Engineering",
+            titleEnd: "Kasetsart University",
+            subTitle: "Jun 2016 - May 2020",
+            subTitleEnd: "Bangkok, Thailand",
+        ),
+        ),
     ),
   ),
 )

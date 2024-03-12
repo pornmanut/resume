@@ -5,8 +5,15 @@
   (text: text, link: link, type: type)
 }
 
-#let subSection(title: "", titleEnd: none, subTitle: none, subTitleEnd: none, content: []) = {
-  (title: title, titleEnd: titleEnd, subTitle: subTitle, subTitleEnd: subTitleEnd, content: content)
+#let subSection(title: "", titleEnd: none, subTitle: none, subTitleEnd: none, link: none, content: []) = {
+  (
+    title: title, 
+    titleEnd: titleEnd, 
+    subTitle: subTitle, 
+    subTitleEnd: subTitleEnd, 
+    link: link,
+    content: content
+  )
 }
 
 #let section(title: "", content: subSection()) = {
@@ -27,6 +34,7 @@
     (title: "", content: [])
   ),
   sidebar: (),
+  bottom: (),
   body) = {
 
   let backgroundTitle(content) = heading(
@@ -112,16 +120,20 @@
     ..subSections.map(s => {
       [
         #box([
-          #secondaryTitle(s.title)#h(1fr)#italicColorTitle(s.titleEnd)
-          ] )
+          #secondaryTitle(s.title)#h(1fr)
+          #if s.link == none [
+            #italicColorTitle(s.titleEnd)
+          ] else [
+            #italicColorTitle(link(s.link, text(s.titleEnd)))
+          ] ])
         #if (s.subTitle != "" and s.subTitle != none) or (s.subTitleEnd != "" and s.subTitleEnd != none) { 
-        box[
-          #text(9pt)[
-            #if (s.subTitle != "" and s.subTitle != none) {
-            [#icon("calendar") #s.subTitle]
-            }
-            #h(1fr)#icon("location") #s.subTitleEnd]
-        ]
+          box[
+            #text(9pt)[
+              #if (s.subTitle != "" and s.subTitle != none) {
+              [#icon("calendar") #s.subTitle]
+              }
+              #h(1fr)#icon("location") #s.subTitleEnd]
+          ]
         }
         #s.content
       ]
@@ -175,10 +187,5 @@
     mainSection,
     sidebarSection,
   )
-
-  // Main body.
-  // set par(justify: true)
-  // show: columns.with(3, gutter: 1.3em)
-
-  // body
+  parseSection(bottom)
 }
