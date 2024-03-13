@@ -84,7 +84,7 @@
         subSection(
           title: "Task Manager Spring",
           titleEnd: "github.com/pornmanut/task-manager-spring",
-          link: "https://github.com//pornmanut/task-manager-spring",
+          link: "https://d1taln2msl2iip.cloudfront.net/",
           content: list(
             [Task management website for tracking to-do list tasks. The application was built using Java, Spring Boot, and React. It was deployed on AWS using AWS Serverless Application Model (SAM), with Java Spring Boot running on AWS Lambda and React hosted on S3 via CloudFront. DynamoDB as the database. CI/CD were implemented using GitHub Actions.],
           ),
