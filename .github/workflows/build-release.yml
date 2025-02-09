@@ -26,26 +26,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      CARGO_INSTALL_ROOT: $HOME/.cargo-installed
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  
 
-      # Set up Rust so we can use Cargo to install typst-cli.
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
 
-      # Ensure Cargo's bin directory is in the PATH.
-      - name: Add Cargo bin to PATH
-        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+      - name: Cache typst-cli installation
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.CARGO_INSTALL_ROOT }}
+          key: ${{ runner.os }}-typst-cli-${{ hashFiles('Cargo.lock') }}
 
-      # Install Typst CLI via Cargo in release mode.
+      - name: Add Cargo Install Root to PATH
+        run: echo "${{ env.CARGO_INSTALL_ROOT }}/bin" >> $GITHUB_PATH
+
       - name: Install typst-cli via Cargo
-        run: cargo install --locked typst-cli
+        run: cargo install --locked typst-cli --root ${{ env.CARGO_INSTALL_ROOT }}
 
       - name: Set version tag for manual trigger
         if: github.event_name == 'workflow_dispatch' && inputs.version != ''
@@ -61,7 +67,7 @@ jobs:
       - name: Build Resume
         run: |
           typst compile resume.typ resume.pdf
-        continue-on-error: false  # Fail if compilation fails
+        continue-on-error: false
 
       - name: Set file name
         id: filename
