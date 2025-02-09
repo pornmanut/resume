@@ -25,28 +25,27 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      TYPST_VERSION: "v0.10.0"  # Pin Typst version for stability
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper versioning
+          fetch-depth: 0  
 
-      - name: Cache Typst
-        uses: actions/cache@v4
+      # Set up Rust so we can use Cargo to install typst-cli.
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
         with:
-          path: |
-            ~/.cache/typst
-            ~/.cache/fonts
-          key: ${{ runner.os }}-typst-${{ env.TYPST_VERSION }}
+          toolchain: stable
+          override: true
 
-      - name: Setup Typst
-        uses: lvignoli/typst-action@main
-        with:
-          version: ${{ env.TYPST_VERSION }}
-          # Remove source_file as we'll use the CLI directly
+      # Ensure Cargo's bin directory is in the PATH.
+      - name: Add Cargo bin to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      # Install Typst CLI via Cargo in release mode.
+      - name: Install typst-cli via Cargo
+        run: cargo install --locked typst-cli
 
       - name: Set version tag for manual trigger
         if: github.event_name == 'workflow_dispatch' && inputs.version != ''
