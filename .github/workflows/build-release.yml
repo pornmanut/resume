@@ -100,7 +100,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: github.event_name == 'push' || inputs.release_type == 'release'
         with:
-          name: "Resume ${{ env.RELEASE_TAG }} (${{ env.DATE }})"
+          name: ${{ env.RELEASE_TAG }}
           body: ${{ env.NOTES }}
           files: ${{ env.FILENAME }}
           draft: ${{ github.event.inputs.release_type == 'draft' }}
@@ -108,7 +108,6 @@ jobs:
           tag_name: ${{ env.RELEASE_TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DATE: ${{ env.DATE }}
 
       - name: Upload as Draft
         uses: actions/upload-artifact@v4
