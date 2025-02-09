@@ -18,8 +18,9 @@
   job_title: "Software Engineer",
   contact: (
     contact(
-      text: "(+66)897049622",
-      type: "phone",
+      text: "manut.dev",
+      link: "https://manut.dev/",
+      type: "website",
     ),
     contact(
       text: "Pornmanut", 
@@ -35,6 +36,10 @@
       text: "pornmanuty@gmail.com", 
       link: "mailto:pornmanuty@gmail.com",
       type: "email",
+    ),
+    contact(
+      text: "(+66)897049622",
+      type: "phone",
     ),
   ),
   summary: [

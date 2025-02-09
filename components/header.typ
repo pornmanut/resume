@@ -14,20 +14,32 @@
 }
 
 #let contactInfo(contacts) = {
-  align(left)[
-    #stack(
-      dir: ltr,
-      spacing: 0.5em,
-      ..contacts.map(c => {
-        if c.link == none [
-          #icon(c.type)
-          #c.text
-        ] else [
-          #icon(c.type)
-          #underline(link(c.link, text(c.text)))
+  let items = contacts.map(c => {
+    if c.link == none [
+      #icon(c.type)
+      #h(3pt)
+      #c.text
+    ] else [
+      #icon(c.type)
+      #h(3pt)
+      #underline(link(c.link, text(c.text)))
+    ]
+  })
+
+  align(center)[
+    #box(width: 100%)[
+      #grid(
+        columns: (1fr),
+        rows: (auto),
+        align(center)[
+          #stack(
+            dir: ltr,
+            spacing: 2em,
+            ..items
+          )
         ]
-      })
-    )
+      )
+    ]
   ]
 }
 
