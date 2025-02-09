@@ -55,18 +55,14 @@
     #stack(
       dir: ttb,
       spacing: 1.5em,
-      profileImageSection,
       parseSection(sidebar, theme)
     )
   ]
 
   set par(justify: true)
 
-  grid(
-    columns: (2fr, 1fr),
-    column-gutter: 1em,
-    mainSection,
-    sidebarSection,
-  )
+  mainSection
+  sidebarSection
+  
   parseSection(bottom, theme)
 }

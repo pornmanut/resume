@@ -41,8 +41,8 @@
   main: (
     section(
         content: (
-          "As a Software Engineer with over two years of experience, I have been directly involved in developing internal software to enhance quality and streamline the development process for internal users. I have experience in agile process, leading planning ceremony, developing and designing microservices applications. I have interests in software architecture, ETL processes, and developing applications with LLM."
-        )
+          "With over three years of experience in software development, I have collaborated closely with cross-functional teams and data research teams to streamline their processes. My expertise includes gathering requirements, designing and developing scalable software solutions within an agile framework, as well as architecting robust ETL pipelines, microservices, and clean architecture patterns. Additionally, I have built high-throughput APIs leveraging AWS technologies. I am a passionate team player who loves learning new technologies"
+        ),
     ),
     section(
       title: "Work Experience",
@@ -53,13 +53,14 @@
           subTitle: "May 2022 - Present",
           subTitleEnd: "Bangkok, Thailand",
           content: list(
-            [Design and develop an application that aggregates data from various social media platforms, performs data processing and analysis, and integrates with Looker Studio for data visualization.],
-            [Develop an contractor managment system platform, allowing the research team to assign contractor to each task, contractor will labeling messages with configurable labels.],
-            [Develop an ETL application that routinely calculates well-known research metrics for the research team.],
-            [Design and develop internal micoservice bot that conditionally synchronize data from data warehouse to application.],
-            [Refactor and develop a new iteration of the web application that visualizes data from various social media platforms based on input keywords. Support both internal and external users, providing a visualization interface and an API.],
-            [Design, develop and maintain internal tools to assist the research team.],
-            [Collaborate with other teams to develop a boilerplate template in Golang.]
+            [Designed and developed an application to aggregate data from multiple social media platforms. The application performs data processing, analysis, and integrates with Looker Studio for visualization. Built using Python on AWS Lambda, and Event Bridge.],
+            [Developed a labeling system platform that enables the research team to assign contractors to tasks. Contractors can label messages with complex, configurable labels. Built using Fastify, TypeScript, React, AWS EC2 Container Registry (ECR), AWS Lambda, Amazon SQS, AWS Amplify, and MongoDB.],
+            [Created an ETL application to calculate metrics for the research team. Utilized Python on AWS Lambda, AWS Step Functions, and SQS queues to handle large datasets and store metrics in PostgreSQL.],
+            [Designed and developed an internal tool to optimize processes for the research team. Ensured efficient handling of large data and fast export into Excel files. Built using Python with a microservices architecture and integrated with a frontend interface.],
+            [Developed a web application that visualizes social media data based on input keywords. Built using TypeScript, AWS Amplify, AWS Lambda, Elasticsearch, and PostgreSQL.],
+            [Developed and support internal tools to assist the research team. Primarily built using Python and Amazon SNS for event-driven communication with other internal tools.],
+            [Collaborated with teams as part of a guild to create guidelines and boilerplates for Golang and centralized logging in Python.],
+            [Designed and developed a high-throughput API that receives jobs, filters messages from other products, and sends notifications. Built using Python, DynamoDB, AWS API Gateway, Lambda, and queues to ensure availability with forward and backward pipelines.],
           ),
         ),
         subSection(
@@ -68,9 +69,9 @@
           subTitle: "Sep 2021 - May 2022",
           subTitleEnd: "Phetchabun, Thailand",
           content: list(
-            [Design and develop a order-book feature for the 'ELECTRONIC SARABUN' website. This feature enables users to distribute order-book shares among departments within the organization. The feature],
-            [Design and develop a single page application for verifying the authenticity of lottery resellers using their personal identification.],
-            [Design and develop a new Phetchabun goverment website.],
+            [Designed and developed an order management feature for the 'ELECTRONIC SARABUN' website. This feature allows users to distribute order shares among departments within the organization.],
+            [Designed and developed a single-page application to verify the authenticity of lottery resellers by validating their national identification numbers.],
+            [Designed and developed a new official government website for Phetchabun province, enhancing online services for residents and improving public access to government information.],
           ),
         ),
       ),
@@ -81,19 +82,11 @@
       title: "Personal Project",
       content: (
         subSection(
-          title: "Task Manager Spring",
-          titleEnd: "github.com/pornmanut/task-manager-spring",
-          link: "https://d1taln2msl2iip.cloudfront.net/",
-          content: list(
-            [Task management website for tracking to-do list tasks. The application was built using Java, Spring Boot, and React. It was deployed on AWS using AWS Serverless Application Model (SAM), with Java Spring Boot running on AWS Lambda and React hosted on S3 via CloudFront. DynamoDB as the database. CI/CD were implemented using GitHub Actions.],
-          ),
-        ),
-        subSection(
-          title: "Resume Generator",
+          title: "Typst Resume",
           titleEnd: "github.com/pornmanut/resume",
           link: "https://github.com//pornmanut/resume",
           content: list(
-            [Developed a resume generator using the Typst language, with automated build and release processes implemented through GitHub Actions..],
+            [Developed a resume generator using the Typst language, with automated build and release processes implemented through GitHub Actions, enhancing efficiency and streamlining the development workflow.],
           ),
         ),
       ),
