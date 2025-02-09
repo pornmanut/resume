@@ -4,6 +4,20 @@ on:
   push:
     tags:
       - "*"
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release Type'
+        required: true
+        default: 'draft'
+        type: choice
+        options:
+          - draft
+          - release
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -11,40 +25,90 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TYPST_VERSION: "v0.10.0"  # Pin Typst version for stability
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
 
-      - name: Build Resume
+      - name: Cache Typst
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/typst
+            ~/.cache/fonts
+          key: ${{ runner.os }}-typst-${{ env.TYPST_VERSION }}
+
+      - name: Setup Typst
         uses: lvignoli/typst-action@main
         with:
-          source_file: |
-            resume.typ
-            template.typ
+          version: ${{ env.TYPST_VERSION }}
+          # Remove source_file as we'll use the CLI directly
+
+      - name: Set version tag for manual trigger
+        if: github.event_name == 'workflow_dispatch' && inputs.version != ''
+        run: |
+          git tag ${{ inputs.version }}
+          echo "RELEASE_TAG=${{ inputs.version }}" >> $GITHUB_ENV
+
+      - name: Set version tag for push trigger
+        if: github.event_name == 'push'
+        run: |
+          echo "RELEASE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Build Resume
+        run: |
+          typst compile resume.typ resume.pdf
+        continue-on-error: false  # Fail if compilation fails
 
       - name: Set file name
         id: filename
-        run: echo "FILENAME=${FIRST_NAME}_${SUR_NAME}_Resume.pdf" >> $GITHUB_ENV
+        run: |
+          echo "FILENAME=${FIRST_NAME}_${SUR_NAME}_Resume_$(date +%Y-%m-%d).pdf" >> $GITHUB_ENV
         env:
           FIRST_NAME: ${{ vars.FIRST_NAME }}
           SUR_NAME: ${{ vars.SUR_NAME }}
 
       - name: Rename PDF file
-        run: mv resume.pdf ${{ env.FILENAME }}
+        run: mv resume.pdf "${{ env.FILENAME }}"
 
-      - name: Upload PDF file
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          echo "NOTES<<EOF" >> $GITHUB_ENV
+          echo "## Changes in this release" >> $GITHUB_ENV
+          echo "$(git log --pretty=format:'- %s' $(git describe --tags --abbrev=0 HEAD^)..HEAD)" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PDFs
+          name: resume-pdf
           path: ${{ env.FILENAME }}
+          retention-days: 7
+          if-no-files-found: error
 
-      - name: Get current date
-        id: date
-        run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
-
-      - name: Release
+      - name: Create Release
         uses: softprops/action-gh-release@v1
-        if: github.ref_type == 'tag'
+        if: github.event_name == 'push' || inputs.release_type == 'release'
         with:
-          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          name: "Resume ${{ env.RELEASE_TAG }} (${{ env.DATE }})"
+          body: ${{ env.NOTES }}
           files: ${{ env.FILENAME }}
+          draft: ${{ github.event.inputs.release_type == 'draft' }}
+          prerelease: false
+          tag_name: ${{ env.RELEASE_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DATE: ${{ env.DATE }}
+
+      - name: Upload as Draft
+        uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.release_type == 'draft'
+        with:
+          name: draft-resume
+          path: ${{ env.FILENAME }}
+          retention-days: 1

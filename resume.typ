@@ -1,5 +1,4 @@
-
-#import "template.typ": *
+#import "./template.typ": project, contact, section, subSection
 
 #set page(
   margin: (
@@ -10,7 +9,7 @@
   ),
 )
 
-#set text(font: "Mulish")
+#set text(font: "mulish")
 
 #show: project.with(
   theme: rgb("#4B2885"),
