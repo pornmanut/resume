@@ -24,45 +24,68 @@
   theme: rgb("#4273B0"),
   first_name: "",
   last_name: "",
-  title: none,
-  profile_img: "",
+  job_title: "",
   contact: ((text: [], link: "")),
-  main: (
-    (title: "", content: [])
-  ),
-  sidebar: (),
-  bottom: (),
+  summary: "",
+  work_experience: (),
+  education: (),
+  skills: (),
+  projects: (),
   body) = {
 
-  let headerSection = header(first_name, last_name, title, theme, contact)
+  let headerSection = header(first_name, last_name, job_title, theme, contact)
   
-  let profileImageSection = align(center)[
-    #box(
-      image(profile_img, height: 135pt, alt: "Profile")
-    , clip: true)
-  ]
+  set par(justify: true)
 
-  let mainSection = [
-    #stack(
+  [#stack(
       dir: ttb,
       spacing: 1.5em,
       headerSection,
-      parseSection(main, theme)
-    )
-  ]
+      summary,
+      
+      // Work Experience
+      parseSection((
+        section(
+          title: "Work Experience",
+          content: work_experience,
+        ),
+      ), theme),
 
-  let sidebarSection = [
-    #stack(
-      dir: ttb,
-      spacing: 1.5em,
-      parseSection(sidebar, theme)
-    )
-  ]
+      // Education
+      parseSection((
+        section(
+          title: "Education",
+          content: education,
+        ),
+      ), theme),
+      
+      // Force page break before Skills section
+      colbreak(),
+      
+      // Skills section with Programming and Technologies
+      parseSection((
+        section(
+          title: "Skills",
+          content: skills,
+        ),
+      ), theme),
 
-  set par(justify: true)
+      // Interests and Language as separate section
+      parseSection((
+        section(
+          title: "Interests & Languages",
+          content: skills,
+        ),
+      ), theme),
 
-  mainSection
-  sidebarSection
-  
-  parseSection(bottom, theme)
+      // Projects Section (if provided)
+      if projects != () {
+        parseSection((
+          section(
+            title: "Personal Projects",
+            content: projects,
+          ),
+        ), theme)
+      }
+    )]
 }
