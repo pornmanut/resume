@@ -62,3 +62,6 @@ Or use the provided build script:
 1. Edit `resume.typ` to update your personal information and content
 2. Modify `template.typ` to adjust the layout and styling
 3. Update components in the `components/` directory to change specific section layouts
+
+---
+*This documentation was generated with the assistance of Claude 3.5 Sonnet.*
