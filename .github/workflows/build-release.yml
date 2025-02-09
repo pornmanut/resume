@@ -72,7 +72,7 @@ jobs:
       - name: Set file name
         id: filename
         run: |
-          echo "FILENAME=${FIRST_NAME}_${SUR_NAME}_Resume_$(date +%Y-%m-%d).pdf" >> $GITHUB_ENV
+          echo "FILENAME=$(date +%Y%m%d)_${FIRST_NAME}_${SUR_NAME}_resume.pdf" >> $GITHUB_ENV
         env:
           FIRST_NAME: ${{ vars.FIRST_NAME }}
           SUR_NAME: ${{ vars.SUR_NAME }}
